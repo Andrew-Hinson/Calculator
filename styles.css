@@ -1,0 +1,14 @@
+body {
+    background-color: grey;
+}
+#main {
+    margin: auto;
+    width: 50%;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+}
+#screen {
+    border: 1px solid white;
+    padding: 10px;
+}
