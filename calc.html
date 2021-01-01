@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <title>Document</title>
 </head>
 <body>
     <div id="main">
     <div id="head" class="head">
-        <h1 id="h1head" class="head">Calculator</h1>
+        <div id="screen"></div>
     </div>
-    <div id="screen"></div>
+    <div id="cleared">
+        <button id="clearbtn" class="extra"><i class="fas fa-eraser"></i></button>
+        <button id="deletebtn" class="extra"><i class="fas fa-backspace"></i></button>
+    </div>
     <div id="numContainer" class="container">
         <button class="numbers" value="1">1</button>
         <button class="numbers" value="2">2</button>
@@ -25,18 +29,17 @@
         <button class="numbers" value="7">7</button>
         <button class="numbers" value="8">8</button>
         <button class="numbers" value="9">9</button>
-        <button class="numbers" value="0">0</button>
+        <button class="zero" value="0">0</button>
+
     </div>
     <div id="oppContainer" class="container">
-        <button id="add" class="opp" value="+">+</button>
-        <button id="subtract" class="opp" value="-">-</button>
-        <button id="multiply" class="opp" value="*">*</button>
-        <button id="divide" class="opp" value="/">/</button>
+        <button id="add" class="opp numbers" value="+">+</button>
+        <button id="subtract" class="opp numbers" value="-">-</button>
+        <button id="multiply" class="opp numbers" value="*">*</button>
+        <button id="divide" class="opp numbers" value="/">/</button>
         <button id="equals" value="=">=</button>
     </div>
-    <div id="cleared">
-        <button id="clearbtn">CLEAR</button>
-    </div>
+    
     </div>
 
 

@@ -71,3 +71,4 @@ opperator.forEach((opp) => opp.addEventListener('click', updateOpp));
 //     break; 
 //     case 47: (x, y) => x / y; //divide
 // }
+
