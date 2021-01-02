@@ -8,17 +8,17 @@ body {
     height: 100%;
 }
 #main {
-    background-color:#aeaeae;
+    background-color: #abafb1;
     display: grid;
     grid-template-columns: repeat(4fr, 5rem);
-    grid-template-rows: 30% 12% auto;
+    grid-template-rows: 30% 15% auto;
     grid-template-areas: 
         "header header header header"
         ". clear clear ."
         "main main sidebar sidebar";
     margin: 10% auto;
-    width: 50%;
-    height: 400px;
+    width: 52%;
+    height: 450px;
     border: 4px solid #f9fafb;
     border-radius: 30px;
     padding: 10px;
@@ -31,16 +31,23 @@ body {
 }
 #screen {
     background-color: #9ebdb7;
-    border: 2px solid white;
+    border: 2px solid #f9fafb;
     border-radius: 20px;
-    padding: 10%;
-    justify-content: space-around;
+    height: 121.5px;
+    font-size: 5em;
+    text-align: center;
+    line-height: 121.5px;
+    white-space: nowrap;
+    color: #70799e;
 }
 #cleared {
+    padding: 2px;
     display: flex;
     grid-area: clear;
     grid-column-start: 2;
     grid-column-end: span 2;
+    justify-content: space-between;
+    height: 100%
 }
 #numContainer {
     grid-area: main;
@@ -51,22 +58,37 @@ body {
     
 }
 .container {
-    
+    background-color: #9eb4bd;
     display: grid;
-    grid-template-columns: repeat(3, 5rem);
-    grid-template-rows: repeat(4fr, 3rem);
+    grid-template-columns: repeat(3, 33.3%);
+    grid-template-rows: repeat(4fr, 20%);
     align-content: stretch;
-    padding: 5px;
+    margin: 2px;
+    padding: 10px;
     border: 2px solid white;
     border-radius: 30px;
     text-align: center;
+    width: 90%;
 }
 .numbers {
     border: 1px solid;
     border-color: white;
     background: #9ea4bd;
     border-radius: 0.25rem;
-    font-family: system-ui, sans-serif;
+    color: white;
+    line-height: 1.2px;
+    font-size: 2rem;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0.25rem;
+}
+.opp{
+    border: 1px solid;
+    border-color: white;
+    background: #9ea4bd;
+    border-radius: 0.25rem;
     color: white;
     line-height: 1.2px;
     font-size: 2rem;
@@ -82,7 +104,6 @@ body {
     border-color: white;
     background: #9ea4bd;
     border-radius: 0.25rem;
-    font-family: system-ui, sans-serif;
     color: white;
     line-height: 1.2px;
     font-size: 2rem;
@@ -93,14 +114,16 @@ body {
     margin: 0.25rem;
 }
 .extra {
+    height: 50px;
+    width: 80px;
+    justify-content: center;
     align-self: stretch;
     border: 1px solid;
     border-color: white;
     background: #bd9ea4;
     border-radius: 0.25rem;
-    font-family: system-ui, sans-serif;
     color: white;
-    line-height: 1.2px;
+    line-height: 50%;
     font-size: 2rem;
     text-decoration: none;
     padding: 10px;
@@ -108,6 +131,7 @@ body {
     cursor: pointer;
     margin: 0.25rem;
 }
+
 #equals {
     grid-column-start: 2;
     grid-column-end: span 2;
@@ -115,7 +139,6 @@ body {
     border-color: white;
     background: #bd9ea4;
     border-radius: 0.25rem;
-    font-family: system-ui, sans-serif;
     color: white;
     line-height: 1.2px;
     font-size: 2rem;
@@ -125,4 +148,3 @@ body {
     cursor: pointer;
     margin: 0.25rem;
 }
-
