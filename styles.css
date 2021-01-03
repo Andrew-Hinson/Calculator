@@ -1,5 +1,5 @@
 html{
-    background: #cccfdc;
+    background: #4a2e47;
     background-image: linear-gradient(to bottom right, #cccfdc);
 }
 body {
@@ -7,8 +7,9 @@ body {
     font-size: 16px;
     height: 100%;
 }
+
 #main {
-    background-color: #abafb1;
+    background-color: #fadcaa;
     display: grid;
     grid-template-columns: repeat(4fr, 5rem);
     grid-template-rows: 30% 15% auto;
@@ -30,7 +31,7 @@ body {
     grid-column-end: span 4;
 }
 #screen {
-    background-color: #9ebdb7;
+    background-color: #b2deec;
     border: 2px solid #f9fafb;
     border-radius: 20px;
     height: 121.5px;
@@ -58,7 +59,7 @@ body {
     
 }
 .container {
-    background-color: #9eb4bd;
+    background-color: #b2c1ec;
     display: grid;
     grid-template-columns: repeat(3, 33.3%);
     grid-template-rows: repeat(4fr, 20%);
@@ -73,7 +74,7 @@ body {
 .numbers {
     border: 1px solid;
     border-color: white;
-    background: #9ea4bd;
+    background: #b2deec;
     border-radius: 0.25rem;
     color: white;
     line-height: 1.2px;
@@ -83,11 +84,18 @@ body {
     white-space: nowrap;
     cursor: pointer;
     margin: 0.25rem;
+}
+.numbers:hover{
+    color :#794c74;
+    border-color :#bd9ea4;
+    }
+.numbers:focus{
+    border-color: #794c74;
 }
 .opp{
     border: 1px solid;
     border-color: white;
-    background: #9ea4bd;
+    background: #c56183;
     border-radius: 0.25rem;
     color: white;
     line-height: 1.2px;
@@ -98,11 +106,16 @@ body {
     cursor: pointer;
     margin: 0.25rem;
 }
+.opp:hover{
+    color :#794c74;
+    border-color :#bd9ea4;
+    }
 .zero {
-    grid-column-start: 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
     border: 1px solid;
     border-color: white;
-    background: #9ea4bd;
+    background: #b2deec;
     border-radius: 0.25rem;
     color: white;
     line-height: 1.2px;
@@ -120,7 +133,7 @@ body {
     align-self: stretch;
     border: 1px solid;
     border-color: white;
-    background: #bd9ea4;
+    background: #c56183;
     border-radius: 0.25rem;
     color: white;
     line-height: 50%;
@@ -131,13 +144,17 @@ body {
     cursor: pointer;
     margin: 0.25rem;
 }
+.extra:hover{
+    color :#794c74;
+    border-color :#bd9ea4;
+    }
 
 #equals {
     grid-column-start: 2;
     grid-column-end: span 2;
     border: 1px solid;
-    border-color: white;
-    background: #bd9ea4;
+    border-color: #fadcaa;
+    background: #c56183;
     border-radius: 0.25rem;
     color: white;
     line-height: 1.2px;
@@ -148,3 +165,7 @@ body {
     cursor: pointer;
     margin: 0.25rem;
 }
+#equals:hover{
+    color :#794c74;
+    border-color :#bd9ea4;
+    }
