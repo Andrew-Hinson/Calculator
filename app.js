@@ -4,77 +4,81 @@ const opperator = document.querySelectorAll('.opp');
 const cleared = document.querySelector('#clearbtn');
 const equals = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#deletebtn');
+const decimal = document.querySelector('#dec');
+const body = document.querySelector('body');
 let hasPressed = false;
-let currentOpp;
+let currentOpp;  //+ - * / assigned unicode val
 let opperand;
 let numToBeEvaled = ''; //string that is eventually parsed into array and spit back out
 let total = 0;
+let decPress = false;
 //currently it just appends the value to the displayVal variable and shows that in the text
 const evalObj = {
     add : (x, y) =>  x + y,
     sub : (x, y) => x - y,
     mult: (x, y) => x * y,
     div : (x, y) => x / y
-}
+};
 
-let updateNum = (element) => {
-      
-    screen.innerText += parseInt(element.target.value);
-    numToBeEvaled += element.target.value
-    console.log(numToBeEvaled)
+let concatNum = (currentTotal) => currentTotal.length >= 19 ? Number.parseFloat(currentTotal).toFixed(2) : currentTotal;
+
+let transform = (digit) => {
+    let code = digit.charCodeAt()                          
+    if((code >= 42 && code <= 45)||(code == 47)){
+          code = 35     //something easy to filter
+        return String.fromCharCode(code)
+    } else {
+        return String.fromCharCode(code)
+    }
+};
+let evaluate = () => {
+    let myArr = numToBeEvaled.split('')
+            .map(i => transform(i))
+            .join('')
+    if (currentOpp == 43){
+        opperand = evalObj.add
+    } else if (currentOpp == 45){
+        opperand = evalObj.sub
+    } else if (currentOpp == 42){
+        opperand = evalObj.mult
+    } else if (currentOpp == 47){
+        opperand = evalObj.div
+    }
+    let totalArr = myArr
+            .split('#')
+            .map(i => parseFloat(i))
+            .reduce(opperand)
+            .toString()
+    total = concatNum(totalArr);
+    screen.innerText = total;
+    numToBeEvaled = total;
+    decimal.disabled = false; 
 }
+const screenUpdate = (element) => {
+    screen.innerText += element.target.value
+    numToBeEvaled += element.target.value
+};
+
+let updateNum = (element) => screenUpdate(element);
+
 let updateOpp = (element) => {
     if(hasPressed == true){
-        myEval()
+        evaluate()
     }
-    hasPressed = true
-    screen.innerText += element.target.value
-    currentOpp = element.target.value.charCodeAt(0)
-    numToBeEvaled += element.target.value
-    
-}
-
-let myEval = () => {
-    let numArr = numToBeEvaled.split(/[^\w\s]|_/g)
-    if (currentOpp == 43){
-        opperand = evalObj.add
-    } else if (currentOpp == 45){
-        opperand = evalObj.sub
-    } else if (currentOpp == 42){
-        opperand = evalObj.mult
-    } else if (currentOpp == 47){
-        opperand = evalObj.div
-    }
-    let totalArr = numArr
-        .map(i => parseInt(i))
-        .reduce(opperand)
-        .toString()
-    total = totalArr;
-    screen.innerText = totalArr;
-    numToBeEvaled = total; 
     hasPressed = true;
+    decimal.disabled = false; 
+    currentOpp = element.target.value.charCodeAt(0);
+    screenUpdate(element);
+};
+let deleteOpp = () => {
+    let newStr = numToBeEvaled.slice(0, numToBeEvaled.length -1)
+    numToBeEvaled = newStr
+    total = newStr
+    screen.innerText = newStr
 }
-
-
 equals.addEventListener('click', () => {
-    let numArr = numToBeEvaled.split(/[^\w\s]|_/g)
-    if (currentOpp == 43){
-        opperand = evalObj.add
-    } else if (currentOpp == 45){
-        opperand = evalObj.sub
-    } else if (currentOpp == 42){
-        opperand = evalObj.mult
-    } else if (currentOpp == 47){
-        opperand = evalObj.div
-    }
-    let totalArr = numArr
-        .map(i => parseInt(i))
-        .reduce(opperand)
-        .toString()
-    total = totalArr;
-    screen.innerText = totalArr;
-    numToBeEvaled = total 
-})
+    evaluate() 
+});
 
 cleared.addEventListener('click', () => {
     screen.innerText = '';
@@ -83,30 +87,48 @@ cleared.addEventListener('click', () => {
     currentOpp = 0;
     hasPressed = false;
 });
+
 deleteBtn.addEventListener('click', () => {
-    let newStr = numToBeEvaled.slice(0, numToBeEvaled.length -1)
-    numToBeEvaled = newStr
-    total = newStr
-    screen.innerText = newStr
-    
+    deleteOpp()
 })
 
+decimal.addEventListener('click', () => {
+    decimal.disabled = true;
+})
 
+body.addEventListener('click', () => {
+    if(numToBeEvaled.length >= 9){
+        screen.style.fontSize = '3em';
+    } else {
+        screen.style.fontSize = '5em';
+    }
+})
 
-numbers.forEach((number) => number.addEventListener('click', updateNum));
+document.addEventListener('keydown', (e) => {
+    if(e.key >= 0 && e.key <= 9){
+    screen.innerText += e.key
+    numToBeEvaled += e.key
+    }
+    if(e.key == 'Backspace'){
+        deleteOpp()
+    }
+    if(e.key == 'Enter'){
+        evaluate()
+    }
+    let oppPress = e.key.charCodeAt()
+    if(oppPress >= 42 && oppPress <= 47){
+        screen.innerText += e.key
+        numToBeEvaled += e.key
+        currentOpp = oppPress
+    }
+});
+
+numbers.forEach((number) => number.addEventListener('click', (numPress) =>{
+    if(numToBeEvaled.length >= 19){
+        numbers.attributes.disabled = true;
+    } 
+    updateNum(numPress)
+}));
 
 opperator.forEach((opp) => opp.addEventListener('click', updateOpp));
-
-
-
-
-// switch(currentOpp){
-//     case 43: (x, y) =>  x + y; //add
-//     break; 
-//     case 45: (x, y) => x - y; //subtract
-//     break; 
-//     case 42: (x, y) => x * y; //multiply
-//     break; 
-//     case 47: (x, y) => x / y; //divide
-// }
 
