@@ -14,7 +14,7 @@ let total = 0;
 let decPress = false;
 //currently it just appends the value to the displayVal variable and shows that in the text
 const evalObj = {
-    add : (x, y) =>  x + y,
+    add : (x, y) => x + y,
     sub : (x, y) => x - y,
     mult: (x, y) => x * y,
     div : (x, y) => x / y
@@ -103,9 +103,19 @@ body.addEventListener('click', () => {
         screen.style.fontSize = '5em';
     }
 })
+body.addEventListener('keydown', () => {
+    if(numToBeEvaled.length >= 9){
+        screen.style.fontSize = '3em';
+    } else {
+        screen.style.fontSize = '5em';
+    }
+})
 
 document.addEventListener('keydown', (e) => {
     if(e.key >= 0 && e.key <= 9){
+        if(numToBeEvaled.length >= 19){
+            numbers.attributes.disabled = true;
+        }
     screen.innerText += e.key
     numToBeEvaled += e.key
     }
