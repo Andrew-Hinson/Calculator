@@ -92,6 +92,9 @@ body {
 .numbers:focus{
     border-color: #794c74;
 }
+.numbers:focus{
+    outline: #794c74;
+}
 .opp{
     border: 1px solid;
     border-color: white;
@@ -109,6 +112,9 @@ body {
 .opp:hover{
     color :#794c74;
     border-color :#bd9ea4;
+    }
+.opp:focus{
+    outline: #794c74;
     }
 .zero {
     grid-column-start: 1;
@@ -148,6 +154,9 @@ body {
     color :#794c74;
     border-color :#bd9ea4;
     }
+.extra:focus{
+    outline: #794c74;
+}
 
 #equals {
     grid-column-start: 2;
@@ -169,3 +178,6 @@ body {
     color :#794c74;
     border-color :#bd9ea4;
     }
+#equals:focus{
+    outline: #794c74;
+}
