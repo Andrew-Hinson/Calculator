@@ -12,6 +12,7 @@ let opperand;
 let numToBeEvaled = ''; //string that is eventually parsed into array and spit back out
 let total = 0;
 let decPress = false;
+let keyVal;
 //currently it just appends the value to the displayVal variable and shows that in the text
 const evalObj = {
     add : (x, y) => x + y,
@@ -54,12 +55,10 @@ let evaluate = () => {
     numToBeEvaled = total;
     decimal.disabled = false; 
 }
-const screenUpdate = (element) => {
-    screen.innerText += element.target.value
-    numToBeEvaled += element.target.value
+let updateNum = () => {
+    screen.innerText += keyVal
+    numToBeEvaled += keyVal
 };
-
-let updateNum = (element) => screenUpdate(element);
 
 let updateOpp = (element) => {
     if(hasPressed == true){
@@ -67,8 +66,8 @@ let updateOpp = (element) => {
     }
     hasPressed = true;
     decimal.disabled = false; 
-    currentOpp = element.target.value.charCodeAt(0);
-    screenUpdate(element);
+    currentOpp = keyVal.charCodeAt(0);
+    updateNum(element)
 };
 let deleteOpp = () => {
     let newStr = numToBeEvaled.slice(0, numToBeEvaled.length -1)
@@ -116,6 +115,7 @@ document.addEventListener('keydown', (e) => {
         if(numToBeEvaled.length >= 19){
             numbers.attributes.disabled = true;
         }
+    keyVal = e.key
     screen.innerText += e.key
     numToBeEvaled += e.key
     }
@@ -137,8 +137,12 @@ numbers.forEach((number) => number.addEventListener('click', (numPress) =>{
     if(numToBeEvaled.length >= 19){
         numbers.attributes.disabled = true;
     } 
-    updateNum(numPress)
+    keyVal = numPress.target.value
+    updateNum(keyVal)
 }));
 
-opperator.forEach((opp) => opp.addEventListener('click', updateOpp));
+opperator.forEach((opp) => opp.addEventListener('click', (oppClick) => {
+    keyVal = oppClick.target.value
+    updateOpp(keyVal)
+}));
 
